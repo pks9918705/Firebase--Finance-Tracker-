@@ -17,7 +17,7 @@ export default function Navbar() {
             <Link to="/login" className="btn" style={{ marginRight: "10px" }}>
               Login
             </Link>
-            <Link to="/" className="btn">
+            <Link to="/signup" className="btn">
               SignUp
             </Link>
           </>
