@@ -9,6 +9,7 @@ export const authReducer = (state, action) => {
     // Add cases for different actions if needed
     // For example, handling login, logout, or updating user information
     case "LOGIN":
+        console.log("Logged in successfully")
         return {...state,user:action.payload}
 
         //when the user is logged out the user state is null again

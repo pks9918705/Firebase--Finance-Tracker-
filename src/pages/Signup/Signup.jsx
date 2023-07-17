@@ -35,7 +35,7 @@ export default function Signup() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
-            placeholder="displayName"
+            placeholder="User Name"
             className={styles["input-box"]}
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}

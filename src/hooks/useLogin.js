@@ -11,18 +11,19 @@ const useLogin = () => {
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext()
 
-  const login = async (email, password ) => {
+  const login = async (email, password   ) => {
     setError(null);
     setIsPending(true);
 
     try {
       // Signup user
-      const res = await signInWithEmailAndPassword(ProjectAuth, email, password);
+      const res = await signInWithEmailAndPassword(ProjectAuth, email, password );
 
       if (!res.user) {
         throw new Error("Could not complete signup");
       }
       console.log("Hurray!!, User SignIn successfully")
+      
       //  when the user is signup successfully so now dispatch an event 
       // dipatch Login action
       dispatch({ type: "LOGIN", payload: res.user })

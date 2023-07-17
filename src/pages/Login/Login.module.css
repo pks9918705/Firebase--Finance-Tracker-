@@ -1,0 +1,36 @@
+.input-box{
+    padding: 10px 20px;
+    height: 20px;
+    width: 300px;
+    border: 2px soild rgb(194, 194, 194);
+    border-radius: 5px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    /* border: 2px solid black; */
+   
+    
+}
+button{
+    background-color: rgb(68, 68, 193);
+    color: white;
+    padding: 11px 15px;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.outer-card{
+    margin-top: 200px;
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}

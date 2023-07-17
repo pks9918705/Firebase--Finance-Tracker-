@@ -1,9 +1,24 @@
-.navbar{
-    display: flex;
-    flex-direction: row;
-    padding: 10px 20px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(234, 252, 247);
-    /* border: 2px solid black; */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(234, 252, 247);
+  /* border: 2px solid black; */
+}
+.rightNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.greeting {
+  margin-right: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+
+  border: 2px solid #13cf61;
+  color: #1f9751;
+  padding: 3px 12px;
+  border-radius: 4px;
 }
