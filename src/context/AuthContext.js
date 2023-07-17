@@ -1,4 +1,5 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import { ProjectAuth } from "../config/firebaseConf";
 
 // Create a new context for authentication
 export const AuthContext = createContext();
@@ -9,16 +10,18 @@ export const authReducer = (state, action) => {
     // Add cases for different actions if needed
     // For example, handling login, logout, or updating user information
     case "LOGIN":
-        console.log("Logged in successfully")
-        return {...state,user:action.payload}
+      console.log("Logged in successfully")
+      return { ...state, user: action.payload }
 
-        //when the user is logged out the user state is null again
+    //when the user is logged out the user state is null again
     case "LOGOUT":
-        // ...state --> current state property
-        console.log("logout successfully") 
-        return {...state,user:null}
+      // ...state --> current state property
+      console.log("logout successfully")
+      return { ...state, user: null }
 
-    
+      case "AUTH_IS_READY":
+        return { ...state, user: action.payload,authIsReady:true }
+
     default:
       return state;
   }
@@ -26,19 +29,31 @@ export const authReducer = (state, action) => {
 
 // AuthContextProvider component to provide the authentication state to its children
 export const AuthContextProvider = ({ children }) => {
-   /* Inside the AuthContextProvider, the useReducer hook is used to initialize the state using the authReducer function. The initial state is an object with a user property set to null.*/
+  /* Inside the AuthContextProvider, the useReducer hook is used to initialize the state using the authReducer function. The initial state is an object with a user property set to null.*/
 
   const [state, dispatch] = useReducer(authReducer, {
-    user: null
-  });
-  console.log("AuthContext state:",state)
+    user: null,
+    authIsReady: false // we want to know weather we are login in before rendering the content 
 
-  return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  });
+  // initally user is set null 
+  useEffect(() => {
+    const unsub = ProjectAuth.onAuthStateChanged((user) => {
+      dispatch({
+        type: 'AUTH_IS_READY', payload: user
+
+      }) })
+      // go to notebook for better understanding
+      unsub()
+    }, [])
+    console.log("AuthContext state:", state)
+
+    return (
+      <AuthContext.Provider value={{ ...state, dispatch }}>
+        {children}
+      </AuthContext.Provider>
+    );
+    }
 
 
 /*
@@ -63,7 +78,7 @@ In summary, this code sets up a context (AuthContext) and a reducer function (au
 
 
 
-*/ 
+*/
 
 /* 
  
