@@ -1,10 +1,4 @@
-src>pages >> login, signup,home (all are folder and .jsx and .css are in it)
-TODO:make a router between them
-create css module for every page
-TODO:create component folder and include Navbar.jsx
-TODO:write css for Navbar,login page ,signup page, 
-TODO:create a confg file for firebase
-TODO:export features of firebase from confg file that are used by other components
-TODO:in config file of firebase, import firebase auth
-TODO:
+ 
+TODO:Create a form on home screen and divide the screen into 2 parts
+TODO: 
 TODO:
