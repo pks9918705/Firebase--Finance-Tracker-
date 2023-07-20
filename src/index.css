@@ -15,8 +15,8 @@ ul {
 }
 .btn {
   background: none;
-  border: 2px solid #13cf61;
-  color: #1f9751;
+  border: 2px solid #a013cf;
+  color: #8f38c1;
   padding: 6px 12px;
   border-radius: 4px;
   
@@ -25,6 +25,6 @@ ul {
   font-size: 1em;
 }
 .btn:hover {
-  background: #1f9751;
+  background: #9a03bc;
   color: #fff;
 }

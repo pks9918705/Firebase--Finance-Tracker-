@@ -38,7 +38,7 @@ export default function Transaction ({uid}) {
           />
         </label>
         <label>
-          <span>Amount ($):</span>
+          <span>Amount (&#8377;):</span>
           <input
             type="number"
             required

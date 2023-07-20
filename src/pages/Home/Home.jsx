@@ -9,7 +9,8 @@ export default function Home() {
 
   const {user}=useAuthContext()
   // for getting the collection data
-  const {documents,error}=useCollection("transactions")
+  const {documents,error}=useCollection("transactions",
+  ["uid","==",user.uid])
 
   return (
     <div className={styles.container} >
