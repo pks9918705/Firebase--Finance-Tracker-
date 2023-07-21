@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useReducer } from "react";
 import {   ProjectFirestore ,timeStamp} from "../config/firebaseConf";
-import { addDoc,collection } from "firebase/firestore";
+import { addDoc,collection,deleteDoc,doc } from "firebase/firestore";
 
 // Define the initial state for the hook's reducer
 let initialState = {
@@ -19,6 +19,8 @@ const firestoreReducer = (state, action) => {
             return {   isPending: true,success:false,error:null,document:null }
         case "ADDED_DOCUMENT":
             return { isPending: false, document: action.payload, success: true, error: null }
+        case "DELETED_DOCUMENT":
+            return { isPending: false, document: action.payload, success:true,error:null}
         case "ERROR":
             return {isPending: false, error: action.payload, document:null,success:false}
         default:
@@ -64,8 +66,20 @@ export const useFirestore = (collectionName) => {
     };
 
     // Function to delete a document from the collection
-    const deleteDocument = (id) => {
+    const deleteDocument = async(id) => {
         // Add Firestore logic here for deleting a document
+        dispatch({type:"IS_PENDING"})
+
+        try{
+            // ref  of deletd document
+            const deleteDocument=  await deleteDoc(doc(ProjectFirestore, collectionName, id));
+            dispatchIfNotCancelled({type:"DELETED_DOCUMENT",payload:deleteDocument});
+        }
+        catch(err){
+            console.log("error deleting document ->",err)
+            dispatchIfNotCancelled({type:"ERROR",payload:"could not delete document"});
+        }
+
     };
 
     // Cleanup function to handle asynchronous tasks

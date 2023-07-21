@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ProjectFirestore } from "../config/firebaseConf";
-import { collection, onSnapshot,query, where  } from "firebase/firestore";
+import { collection, onSnapshot,query, where ,orderBy } from "firebase/firestore";
 
 
 // Custom hook to interact with a Firestore collection
-export const useCollection = (collectionName,_query) => {
+export const useCollection = (collectionName,_query,_orderBy) => {
   // State to store the retrieved documents from the Firestore collection
   const [documents, setDocuments] = useState(null);
   // State to handle errors if any occur during data retrieval
@@ -16,6 +16,7 @@ export const useCollection = (collectionName,_query) => {
   // _query is an array and is "different" on every function
 
   const Query=useRef(_query).current
+  const OrderBy=useRef(_orderBy).current
 
   useEffect(() => {
     // Reference to the Firestore collection based on the provided 'collectionName' parameter
@@ -25,6 +26,10 @@ export const useCollection = (collectionName,_query) => {
       // console.log(query);
       // ref=ref.where(...query)
       ref=query(ref, where(...Query));
+    }
+    if(OrderBy){
+       
+      ref=  query(ref, orderBy(...OrderBy));
     }
     
 
@@ -54,7 +59,7 @@ export const useCollection = (collectionName,_query) => {
     // Function to unsubscribe from the snapshot listener when the component unmounts
     return () => unsubscribe();
     
-  }, [collectionName, Query ]); // Re-run the effect whenever the 'collectionName' parameter changes
+  }, [collectionName, Query,OrderBy ]); // Re-run the effect whenever the 'collectionName' parameter changes
 
   // Return the retrieved documents and error state to be used in components
   return { documents, error };

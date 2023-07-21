@@ -23,7 +23,7 @@
     box-sizing: border-box;
     border: 0;
     border-radius: 4px;
-    color: #555;
+    color: #312e2e;
     font-size: 1em;
   }
   .sidebar label {
@@ -59,24 +59,25 @@
     margin:30px auto;
     border: 1px solid #f2f2f2;
     box-shadow: 3px 3px 5px rgba(50,50,50,0.1);
-    padding:20px;
+    padding:31px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     overflow: hidden ;
-    border-left: 4px solid #751f97;
+    border-left: 4px solid hwb(283 12% 41%);
   }
   .transactions .name{
-    margin-left: auto;
-    margin-right: 40px;
-    color: #777;
+    /* margin-left: auto;
+    margin-right: 0px; */
+    color:hwb(283 12% 41%);
     font-weight: bold;
     font-size: 1.6em;
   }
   .transactions button{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 4px;
+    right: 4px;
     background:#ddd;
     color: #777;
     border: none;
@@ -86,3 +87,17 @@
     font-size: 0.9em;
     cursor: pointer;
   }
+  .transactions button:hover{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background:#f60000;
+    color: #ffffff;
+    border: none;
+    padding: 12px 8px;
+    text-align: center;
+    line-height: 0;
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+
